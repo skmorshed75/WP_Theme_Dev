@@ -15,6 +15,7 @@ require_once get_theme_file_path( "/inc/metaboxes/cta.php" ); //2.21
 require_once get_theme_file_path( "/inc/metaboxes/team.php" ); //2.22
 require_once get_theme_file_path( "/inc/metaboxes/portfolio.php" ); //2.23
 require_once get_theme_file_path( "/inc/metaboxes/pricing.php" ); //2.24
+require_once get_theme_file_path( "/inc/metaboxes/shop.php" ); //2.26
 require_once get_theme_file_path( "/inc/metaboxes/page-sections.php" ); //class 2.9
 
 // active modules
@@ -53,15 +54,15 @@ define( "ASSETS_DIR", get_template_directory_uri() . "/assets/" );
 
 function mark_assets() {
     $css_files = array(
-        "google-fonts-css" => "//fonts.googleapis.com/css?family=Cabin|Open+Sans:300,400,600,700",
-        "font-awesome-css" => ASSETS_DIR . "vendor/font-awesome/css/font-awesome.min.css",
-        "bootstrap-css" => ASSETS_DIR . "vendor/bootstrap/css/bootstrap.min.css",
-        "bicon-css" => ASSETS_DIR . "vendor/bicon/css/bicon.css",
-        "owl-carousel-css" => ASSETS_DIR . "vendor/owl/assets/owl.carousel.min.css",
-        "owl-theme-css" => ASSETS_DIR . "vendor/owl/assets/owl.theme.default.min.css",
+        "google-fonts-css"   => "//fonts.googleapis.com/css?family=Cabin|Open+Sans:300,400,600,700",
+        "font-awesome-css"   => ASSETS_DIR . "vendor/font-awesome/css/font-awesome.min.css",
+        "bootstrap-css"      => ASSETS_DIR . "vendor/bootstrap/css/bootstrap.min.css",
+        "bicon-css"          => ASSETS_DIR . "vendor/bicon/css/bicon.css",
+        "owl-carousel-css"   => ASSETS_DIR . "vendor/owl/assets/owl.carousel.min.css",
+        "owl-theme-css"      => ASSETS_DIR . "vendor/owl/assets/owl.theme.default.min.css",
         "magnific-popup-css" => ASSETS_DIR . "vendor/magnific-popup/magnific-popup.css",
-        "animate-css" => ASSETS_DIR . "vendor/animate.css",
-        "main-css" => ASSETS_DIR . "css/main.css",
+        "animate-css"        => ASSETS_DIR . "vendor/animate.css",
+        "main-css"           => ASSETS_DIR . "css/main.css",
     );
 
     foreach ( $css_files as $handle => $css_file ) {
@@ -70,15 +71,15 @@ function mark_assets() {
     wp_enqueue_style( 'mark-css', get_stylesheet_uri(), null, VERSION );
 
     $js_files = array(
-        "bootstrap-js" => array( 'src' => ASSETS_DIR . "vendor/bootstrap/js/bootstrap.min.js", 'dep' => array( 'jquery' ) ),
-        "owl-carousel-js" => array( 'src' => ASSETS_DIR . "vendor/owl/owl.carousel.min.js", 'dep' => array( 'jquery' ) ),
+        "bootstrap-js"      => array( 'src' => ASSETS_DIR . "vendor/bootstrap/js/bootstrap.min.js", 'dep' => array( 'jquery' ) ),
+        "owl-carousel-js"   => array( 'src' => ASSETS_DIR . "vendor/owl/owl.carousel.min.js", 'dep' => array( 'jquery' ) ),
         "magnific-popup-js" => array( 'src' => ASSETS_DIR . "vendor/magnific-popup/jquery.magnific-popup.min.js", 'dep' => array( 'jquery' ) ),
-        "wow-js" => array( 'src' => ASSETS_DIR . "vendor/wow.min.js", 'dep' => array( 'jquery' ) ),
-        "visible-js" => array( 'src' => ASSETS_DIR . "vendor/visible.js", 'dep' => array( 'jquery' ) ),
+        "wow-js"            => array( 'src' => ASSETS_DIR . "vendor/wow.min.js", 'dep' => array( 'jquery' ) ),
+        "visible-js"        => array( 'src' => ASSETS_DIR . "vendor/visible.js", 'dep' => array( 'jquery' ) ),
         "animate-number-js" => array( 'src' => ASSETS_DIR . "vendor/jquery.animateNumber.min.js", 'dep', array( 'jquery' ) ),
-        "isotope-js" => array( 'src' => ASSETS_DIR . "vendor/jquery.isotope.js", 'dep' => '' ),
-        "imageloaded-js" => array( 'src' => ASSETS_DIR . "vendor/imagesloaded.js", 'dep' => '' ),
-        "script-js" => array( 'src' => ASSETS_DIR . "js/scripts.js", 'dep' => array( 'jquery' ) ),
+        "isotope-js"        => array( 'src' => ASSETS_DIR . "vendor/jquery.isotope.js", 'dep' => '' ),
+        "imageloaded-js"    => array( 'src' => ASSETS_DIR . "vendor/imagesloaded.js", 'dep' => '' ),
+        "script-js"         => array( 'src' => ASSETS_DIR . "js/scripts.js", 'dep' => array( 'jquery' ) ),
     );
     foreach ( $js_files as $handle => $js_file ) {
         wp_enqueue_script( $handle, $js_file['src'], isset( $js_file['dep'] ) ? $js_file['dep'] : null, VERSION, true );
@@ -99,8 +100,8 @@ function mark_get_social_fields() {
     $social_profiles = apply_filters( 'mark_social_profiles', array( 'facebook', 'twitter', 'youtube' ) );
     foreach ( $social_profiles as $social_profile ) {
         $field = array(
-            'id' => $social_profile,
-            'type' => 'text',
+            'id'    => $social_profile,
+            'type'  => 'text',
             'title' => ucfirst( $social_profile ),
         );
         array_push( $fields, $field );
