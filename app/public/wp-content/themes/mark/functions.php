@@ -17,6 +17,7 @@ require_once get_theme_file_path( "/inc/metaboxes/portfolio.php" ); //2.23
 require_once get_theme_file_path( "/inc/metaboxes/pricing.php" ); //2.24
 require_once get_theme_file_path( "/inc/metaboxes/shop.php" ); //2.26
 require_once get_theme_file_path( "/inc/metaboxes/clients.php" ); //2.29
+require_once get_theme_file_path( "/inc/metaboxes/subscription.php" ); //2.30
 require_once get_theme_file_path( "/inc/metaboxes/page-sections.php" ); //class 2.9
 
 // active modules
