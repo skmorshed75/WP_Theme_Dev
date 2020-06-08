@@ -11,6 +11,9 @@ Text Domain: mark-companion
 Domain Path:/languages/
  */
 
+//Class 2.33
+require_once plugin_dir_path(__FILE__)."/widgets/mark-social-widget.php";
+
 //Class 2.6
 function markc_load_textdomain() {
     load_plugin_textdomain('mark-companion',false,dirname(__FILE__)."/languages/");
