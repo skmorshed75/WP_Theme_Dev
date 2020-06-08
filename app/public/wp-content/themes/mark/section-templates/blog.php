@@ -7,13 +7,14 @@ $_posts = get_posts( array(
     'order'          => 'DESC',
     'status'         => 'publish',
 ) );
-
-echo '<pre>';
-print_r( $_posts );
-echo '</pre>';
+// echo '<pre>';
+// print_r( $_posts );
+// echo '</pre>';
 ?>
 
-<?php if ( count( $_posts ) > 0 ): ?>
+<?php if ( count( $_posts ) > 0 ): 
+    $mark_thumbnail = get_the_post_thumbnail_url($_posts[0],'mark_landscape_one');
+    ?>
 <!--blog section start-->
 <section class="blog-block" id="blog">
     <!--<div class="">-->
@@ -35,7 +36,7 @@ echo '</pre>';
             </div>
         </div>
         <div class="col-md-6 base-gradient blog-bg-height" style="background: url('<?php echo get_template_directory_uri(); ?>/assets/img/b-img.jpg') center center / cover no-repeat; ">
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/b-img-1.jpg" alt=""/>
+            <img src="<?php if($mark_thumbnail) echo esc_url($mark_thumbnail); ?>" alt=""/>
         </div>
     </div>
     <!--</div>-->

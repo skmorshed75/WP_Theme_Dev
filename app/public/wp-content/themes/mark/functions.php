@@ -16,6 +16,7 @@ require_once get_theme_file_path( "/inc/metaboxes/team.php" ); //2.22
 require_once get_theme_file_path( "/inc/metaboxes/portfolio.php" ); //2.23
 require_once get_theme_file_path( "/inc/metaboxes/pricing.php" ); //2.24
 require_once get_theme_file_path( "/inc/metaboxes/shop.php" ); //2.26
+require_once get_theme_file_path( "/inc/metaboxes/clients.php" ); //2.29
 require_once get_theme_file_path( "/inc/metaboxes/page-sections.php" ); //class 2.9
 
 // active modules
@@ -44,6 +45,8 @@ function mark_theme_setup() {
     register_nav_menu( "top-menu", __( "Top Menu", "Mark" ) );
 
     add_image_size( 'mark_fullsize', 1400, 9999 ); //Class 2.12
+    add_image_size( 'mark_landscape_one', 583, 383,true ); //Class 2.27
+    add_image_size( 'mark-logo', 190, 9999); //Class 2.28
 }
 add_action( 'after_setup_theme', 'mark_theme_setup' );
 
