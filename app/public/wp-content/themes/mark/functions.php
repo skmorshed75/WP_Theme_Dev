@@ -46,8 +46,8 @@ function mark_theme_setup() {
     register_nav_menu( "top-menu", __( "Top Menu", "Mark" ) );
 
     add_image_size( 'mark_fullsize', 1400, 9999 ); //Class 2.12
-    add_image_size( 'mark_landscape_one', 583, 383,true ); //Class 2.27
-    add_image_size( 'mark-logo', 190, 9999); //Class 2.28
+    add_image_size( 'mark_landscape_one', 583, 383, true ); //Class 2.27
+    add_image_size( 'mark-logo', 190, 9999 ); //Class 2.28
 }
 add_action( 'after_setup_theme', 'mark_theme_setup' );
 
@@ -119,3 +119,17 @@ function mark_social_profile_fields( $profiles ) {
     return $profiles;
 }
 add_filter( 'mark_social_profiles', 'mark_social_profile_fields' );
+
+//Class 2.32
+function mark_widgets_init() {
+    register_sidebar( array(
+        'name'          => __( 'Footer Section', 'mark' ),
+        'id'            => 'footer-left',
+        'description'   => __( 'Footer Section, Left Side', 'mark' ),
+        'before_widget' => '<div id="%1$s" class="%2$s">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h5>',
+        'after_title'   => '</h5>',
+    ) );
+}
+add_action( 'widgets_init', 'mark_widgets_init' );
