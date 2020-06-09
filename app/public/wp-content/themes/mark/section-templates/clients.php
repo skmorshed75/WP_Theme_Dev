@@ -7,7 +7,7 @@ $mark_clients = $mark_section_meta['clients'];
 
 <?php if ( count( $mark_clients ) > 0 ): ?>
 <!-- clients section start -->
-<section class="client-section">
+<section  id = "<?php echo get_post_field('post_name',$mark_section['section']); ?>" class="client-section">
     <div class="container">
         <div class="row">
             <div class="col-md-12">

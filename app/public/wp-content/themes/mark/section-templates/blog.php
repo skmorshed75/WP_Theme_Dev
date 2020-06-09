@@ -16,7 +16,7 @@ $_posts = get_posts( array(
     $mark_thumbnail = get_the_post_thumbnail_url($_posts[0],'mark_landscape_one');
     ?>
 <!--blog section start-->
-<section class="blog-block" id="blog">
+<section id = "<?php echo get_post_field('post_name',$mark_section['section']); ?>" class="blog-block">
     <!--<div class="">-->
     <div class="row">
         <div class="col-md-6 align-self-center">

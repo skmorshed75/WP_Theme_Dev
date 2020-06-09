@@ -12,7 +12,7 @@ if ( $mark_about_image_id ) {
 }
 ?>
 <!-- about / parallax section start -->
-<section class=" parallax base-gradient light-txt" style="background-image: url('<?php echo $mark_about_image[0]; ?>');">
+<section id = "<?php echo get_post_field('post_name',$mark_section['section']); ?>" class=" parallax base-gradient light-txt" style="background-image: url('<?php echo $mark_about_image[0]; ?>');">
     <div class="container-full">
         <div class="row">
             <div class="col-md-6 text-center space-3 align-self-center">

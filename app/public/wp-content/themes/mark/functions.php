@@ -44,7 +44,8 @@ function mark_theme_setup() {
         'comment-list',
     ) );
     add_theme_support( 'custom-logo' );
-    register_nav_menu( "top-menu", __( "Top Menu", "Mark" ) );
+    register_nav_menu( "top-menu", __( "Top Menueeee", "Mark" ) );
+    register_nav_menu( "footer-menu", __( "Footer Right Menu", "Mark" ) );
 
     add_image_size( 'mark_fullsize', 1400, 9999 ); //Class 2.12
     add_image_size( 'mark_landscape_one', 583, 383, true ); //Class 2.27
@@ -173,3 +174,29 @@ function mark_widget_nav_menu_args( $nav_menu_args, $nav_menu, $args, $instance 
     return $nav_menu_args;
 }
 add_filter( 'widget_nav_menu_args', 'mark_widget_nav_menu_args', 10, 4 );
+
+//Class 2.35 AddClass in li menu
+function mark_menu_filter($classes, $item, $args) {
+    if('top-menu' == $args->theme_location){
+        $classes[] = 'nav-item';
+    }
+    return $classes;
+}
+add_filter('nav_menu_css_class','mark_menu_filter',10,3);
+
+
+//Class 2.35
+function mark_change_nav_menu($menus){
+    $string_to_replace = home_url("/") . "section/";
+    if(is_front_page()){
+        foreach ($menus as $menu){
+            $new_url = str_replace($string_to_replace,"#", $menu->url);
+            if($new_url != $menu->url){
+                $new_url = rtrim($new_url,"/");
+            }
+            $menu->url = $new_url;
+        }
+    }
+    return $menus;
+}
+add_filter('wp_nav_menu_objects','mark_change_nav_menu');

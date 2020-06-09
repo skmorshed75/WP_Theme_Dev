@@ -14,7 +14,7 @@ if($mark_section_img_id){
 
 
 <!--Image Info block section start-->
-<section class="bg-dark light-txt">
+<section id = "<?php echo get_post_field('post_name',$mark_section['section']); ?>"  class="bg-dark light-txt">
     <!--<div class="">-->
         <div class="row">
             <div class="col-md-6 align-self-center">
