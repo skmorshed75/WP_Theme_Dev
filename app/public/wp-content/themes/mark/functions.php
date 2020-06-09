@@ -1,5 +1,6 @@
 <?php
 
+require_once get_theme_file_path( "/inc/tgm.php" ); //Class 2.34
 require_once get_theme_file_path( "/library/csf/cs-framework.php" ); //Class 2.5
 require_once get_theme_file_path( "/inc/metaboxes/sections.php" ); //class 2.7
 require_once get_theme_file_path( "/inc/metaboxes/banner.php" ); //class 2.8
@@ -48,6 +49,9 @@ function mark_theme_setup() {
     add_image_size( 'mark_fullsize', 1400, 9999 ); //Class 2.12
     add_image_size( 'mark_landscape_one', 583, 383, true ); //Class 2.27
     add_image_size( 'mark-logo', 190, 9999 ); //Class 2.28
+
+    //Class 2.34 Add Customizer Support in footer widget area
+    add_theme_support( 'customize-selective-refresh-widgets' );
 }
 add_action( 'after_setup_theme', 'mark_theme_setup' );
 
@@ -131,5 +135,41 @@ function mark_widgets_init() {
         'before_title'  => '<h5>',
         'after_title'   => '</h5>',
     ) );
+
+    //Class 2.34
+    register_sidebar( array(
+        'name'          => __( 'Footer Middle Section', 'mark' ),
+        'id'            => 'footer-middle',
+        'description'   => __( 'Footer Section, Middle Side', 'mark' ),
+        'before_widget' => '<div id="%1$s" class="%2$s">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h5>',
+        'after_title'   => '</h5>',
+    ) );
+
+    //Class 2.34
+    register_sidebar( array(
+        'name'          => __( 'Footer Right Section', 'mark' ),
+        'id'            => 'footer-right',
+        'description'   => __( 'Footer Section, Right Side', 'mark' ),
+        'before_widget' => '<div id="%1$s" class="%2$s">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h5>',
+        'after_title'   => '</h5>',
+    ) );
 }
 add_action( 'widgets_init', 'mark_widgets_init' );
+
+//Class 2.34 to remove wordpress auto image srcset (image size 75px to 50px)
+add_filter( 'wp_calculate_image_srcset_meta', '__return_empty_array' );
+
+//Class 2.34 add CSS class in the widget
+function mark_widget_nav_menu_args( $nav_menu_args, $nav_menu, $args, $instance ) {
+    if ( isset( $nav_menu_args['menu_class'] ) ) {
+        $nav_menu_args['menu_class'] .= ' list-unstyled short-links';
+    } else {
+        $nav_menu_args['menu_class'] = 'list-unstyled short-links';
+    }
+    return $nav_menu_args;
+}
+add_filter( 'widget_nav_menu_args', 'mark_widget_nav_menu_args', 10, 4 );
